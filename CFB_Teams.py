@@ -49,7 +49,7 @@ conference = 'ACC' # str | Conference abbreviation filter (optional)
 api_response = api_instance.get_teams()
 #print(api_response)
 
-### CONVERT API RESPONSE TO PANDAS DATAFRAME ###
+#### CONVERT API RESPONSE TO PANDAS DATAFRAME ###
 df = pd.DataFrame.from_records([p.to_dict() for p in api_response])
 ### BREAK OUT THE NESTED VALUES FROM API RESPONSE ###
 df['city'] = df[['location']].apply(lambda x: x.location['city'], axis=1)
@@ -65,6 +65,8 @@ df['timezone'] = df[['location']].apply(lambda x: x.location['timezone'], axis=1
 df['venue_id'] = df[['location']].apply(lambda x: x.location['venue_id'], axis=1)
 df['year_constructed'] = df[['location']].apply(lambda x: x.location['year_constructed'], axis=1)
 df.head()
+#print(df)
+
 #print(df.to_json())
 
 ## CONVERT EACH ROW OF DATAFRAM BACK TO JSON ####
@@ -77,7 +79,7 @@ df = df.apply(lambda x: x.to_json(), axis=1)
 connection = postgres_database_connection()
 cursor = connection.connect()
 
-## INSERT EACH JSON ROW TO DATABASE TABLE ###
+# INSERT EACH JSON ROW TO DATABASE TABLE ###
 for i in df:  
 
     i = str(i).replace("'", '')
