@@ -25,7 +25,7 @@ def postgres_database_connection():
     """Returns the DB engine"""
     try:
         print('Connecting to DB')
-        conn =  "postgresql+psycopg2://rworrell:1998HondaCRV@postgresq.cluster-catsuvgqqq1n.us-east-1.rds.amazonaws.com:5432/postgres" 
+        conn =  "postgresql+psycopg2://dba_richie:changeme@73.147.167.79:5432/postgres" 
         engine = create_engine(conn)
         print('Connected to DB')
         return engine

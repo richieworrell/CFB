@@ -25,7 +25,7 @@ def postgres_database_connection():
     """Returns the DB engine"""
     try:
         print('Connecting to DB')
-        conn =  "postgresql+psycopg2://rworrell:1998HondaCRV@postgresq.cluster-catsuvgqqq1n.us-east-1.rds.amazonaws.com:5432/postgres" 
+        conn =  "postgresql+psycopg2://dba_richie:changeme@73.147.167.79:5432/postgres" 
         engine = create_engine(conn)
         print('Connected to DB')
         return engine
@@ -47,7 +47,7 @@ engine = postgres_database_connection()
 api_instance = cfbd.GamesApi(cfbd.ApiClient(configuration))
 #conference = 'ACC' # str | Conference abbreviation filter (optional)
 
-for i in range (1982, 2022):
+for i in range (1886, 2022):
     api_response = api_instance.get_games(year=i)
     #print(api_response)
     df = pd.DataFrame.from_records([p.to_dict() for p in api_response])
