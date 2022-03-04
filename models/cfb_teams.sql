@@ -1,7 +1,7 @@
 {{
   config(
     materialized = 'table',
-    schema= 'cfb'
+    schema= 'data'
   )
 }}
 
@@ -28,6 +28,5 @@ SELECT
 	,CASE WHEN CAST(CAST(json_raw AS json) ::json->'logos' AS varchar) = 'null' THEN NULL ELSE CAST(json_raw AS json) ::json->'logos' END  as logos
 	,CAST(json_raw AS json) AS raw_json
 
-FROM cfb.json_teams jt  
-
+FROM dev_raw.json_teams jt  
 
