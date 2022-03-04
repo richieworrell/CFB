@@ -25,7 +25,7 @@ def postgres_database_connection():
     """Returns the DB engine"""
     try:
         print('Connecting to DB')
-        conn =  "postgresql+psycopg2://dba_richie:changeme@73.147.167.79:5432/postgres" 
+        conn =  "postgresql+psycopg2://dba_richie:changeme@73.147.167.79:5432/rw_cfb" 
         engine = create_engine(conn)
         print('Connected to DB')
         return engine
@@ -85,7 +85,7 @@ for i in api_response:
     i = i.to_dict()
     i = json.dumps(i, indent = 4) 
     i = str(i).replace("'", '')
-    insert_sql = "INSERT INTO cfb.test (json_raw) VALUES ('{insert}')".format(insert=i)
+    insert_sql = "INSERT INTO dev_raw.json_teams (json_raw) VALUES ('{insert}')".format(insert=i)
    # sqlalchemy.text(insert_sql)
     cursor.execute(insert_sql)
     print(" ")
