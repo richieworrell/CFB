@@ -47,7 +47,7 @@ engine = postgres_database_connection()
 api_instance = cfbd.GamesApi(cfbd.ApiClient(configuration))
 #conference = 'ACC' # str | Conference abbreviation filter (optional)
 
-for i in range (1886, 2022):
+for i in range (1992, 2022):
     api_response = api_instance.get_games(year=i)
     #print(api_response)
     df = pd.DataFrame.from_records([p.to_dict() for p in api_response])
@@ -58,7 +58,7 @@ for i in range (1886, 2022):
     for i in df:  
 
         i = str(i).replace("'", '')
-        insert_sql = "INSERT INTO cfb.json_games (json_raw) VALUES ('{insert}')".format(insert=i)
+        insert_sql = "INSERT INTO dev_raw.json_games (json_raw) VALUES ('{insert}')".format(insert=i)
         #sqlalchemy.text(insert_sql)
         cursor.execute(insert_sql)
         print(" ")
