@@ -38,4 +38,4 @@ SELECT
 	,CASE WHEN regexp_replace(CAST(CAST(json_raw AS json) ::json->'notes' AS varchar),'(")', '', 'g') = 'null' THEN NULL ELSE regexp_replace(CAST(CAST(json_raw AS json) ::json->'notes' AS varchar),'(")', '', 'g')END  AS notes 
 	,CAST(json_raw AS json) AS json_raw 
 
-FROM cfb.json_games 
+FROM dev_raw.json_games 
