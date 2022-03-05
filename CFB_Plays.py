@@ -63,7 +63,7 @@ for i in range(1,15):
     for i in df:  
 
         i = str(i).replace("'", '')
-        insert_sql = "INSERT INTO cfb.test (json_raw) VALUES ('{insert}')".format(insert=i)
+        insert_sql = "INSERT INTO dev_raw.json_plays (json_raw) VALUES ('{insert}')".format(insert=i)
         #sqlalchemy.text(insert_sql)
         cursor.execute(insert_sql)
         print(" ")
