@@ -1,7 +1,7 @@
 {{
   config(
     materialized = 'table',
-    schema= 'cfb'
+    schema= 'data'
   )
 }}
 
@@ -37,5 +37,9 @@ SELECT
 	,CASE WHEN regexp_replace(CAST(CAST(json_raw AS json) ::json->'wallclock' AS varchar),'(")', '', 'g') = 'null' THEN NULL ELSE regexp_replace(CAST(CAST(json_raw AS json) ::json->'wallclock' AS varchar),'(")', '', 'g') END as wallclock
 	,CAST(json_raw AS json) AS json_raw 
 
-FROM cfb.json_plays 
+FROM dev_raw.json_plays 
+
+
+
+	
 	
