@@ -50,7 +50,7 @@ year = 2021
 #week = 1
 
 #for i in year:
-for i in range(1,15):
+for i in range(9,15):
     week=i
     api_response = api_instance.get_plays(year=year, week=week)
     #print(api_response)

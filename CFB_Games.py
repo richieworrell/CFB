@@ -11,21 +11,19 @@ from sqlite3.dbapi2 import Cursor
 from pandas.io.json import json_normalize
 from cfbd.rest import ApiException
 from pprint import pprint
+import configparser
+import os
 
-### pyodbc connection string ####
-#cnxn = pyodbc.connect('Driver={PostgreSQL ODBC Driver(UNICODE)};'
-#                      'Server=postgresq.cluster-catsuvgqqq1n.us-east-1.rds.amazonaws.com;'
-#                      'Database=postgres;'
-#                      'UID=rworrell;'
-#                      'PWD=1998HondaCRV;'
-#                      'PORT=5432;')
+config = configparser.RawConfigParser()
+config.read(r'G:\My Drive\Python\config.ini')
 
 ### sqlite3 connection function ###
 def postgres_database_connection():
     """Returns the DB engine"""
     try:
         print('Connecting to DB')
-        conn =  "postgresql+psycopg2://dba_richie:changeme@73.147.167.79:5432/rw_cfb" 
+        conn =  "postgresql+psycopg2://%s:%s@%s:5432/%s" % (config['DEFAULT']['username'], config['DEFAULT']['password'], config['DEFAULT']['database_ip'],'rw_cfb')
+        #conn =  "postgresql+psycopg2://dba_richie:changeme@73.147.167.79:5432/rw_cfb" 
         engine = create_engine(conn)
         print('Connected to DB')
         return engine
