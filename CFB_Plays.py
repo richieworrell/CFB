@@ -1,31 +1,26 @@
 from __future__ import print_function
-#from slack import WebClient
 from datetime import datetime
 from sqlalchemy import create_engine
-import sqlalchemy
 import cfbd
 import pandas as pd
-import json
 from dataclasses import dataclass
 from sqlite3.dbapi2 import Cursor
 from pandas.io.json import json_normalize
 from cfbd.rest import ApiException
 from pprint import pprint
+import configparser
 
-### pyodbc connection string ####
-#cnxn = pyodbc.connect('Driver={PostgreSQL ODBC Driver(UNICODE)};'
-#                      'Server=postgresq.cluster-catsuvgqqq1n.us-east-1.rds.amazonaws.com;'
-#                      'Database=postgres;'
-#                      'UID=rworrell;'
-#                      'PWD=1998HondaCRV;'
-#                      'PORT=5432;')
+
+config = configparser.RawConfigParser()
+config.read(r'G:\My Drive\Python\config.ini')
 
 ### sqlite3 connection function ###
 def postgres_database_connection():
     """Returns the DB engine"""
     try:
         print('Connecting to DB')
-        conn =  "postgresql+psycopg2://dba_richie:changeme@73.147.167.79:5432/rw_cfb" 
+        conn =  "postgresql+psycopg2://%s:%s@%s:5432/%s" % (config['DEFAULT']['username'], config['DEFAULT']['password'], config['DEFAULT']['database_ip'],'rw_cfb')
+        #conn =  "postgresql+psycopg2://dba_richie:changeme@73.147.167.79:5432/rw_cfb" 
         engine = create_engine(conn)
         print('Connected to DB')
         return engine
@@ -40,16 +35,14 @@ configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 ### INITIALIZE ENGINE ###
 engine = postgres_database_connection()
-#df = pd.read_sql_query('select * from cfb.cfb_games', engine)
-#print(df)
+
 
 ### GET API RESPONSE ###
 api_instance = cfbd.PlaysApi(cfbd.ApiClient(configuration))
-#conference = 'ACC' # str | Conference abbreviation filter (optional)
 year = 2021
-#week = 1
 
-#for i in year:
+
+
 for i in range(9,15):
     week=i
     api_response = api_instance.get_plays(year=year, week=week)
@@ -64,39 +57,8 @@ for i in range(9,15):
 
         i = str(i).replace("'", '')
         insert_sql = "INSERT INTO dev_raw.json_plays (json_raw) VALUES ('{insert}')".format(insert=i)
-        #sqlalchemy.text(insert_sql)
         cursor.execute(insert_sql)
         print(" ")
         print(insert_sql)
-
-#api_response = api_instance.get_plays(year=year, week=week)
-#print(api_response)
-
-### CONVERT API RESPONSE TO PANDAS DATAFRAME ###
-#df = pd.DataFrame.from_records([p.to_dict() for p in api_response])
-
-#df.head()
-#print(df.to_json())
-
-## CONVERT EACH ROW OF DATAFRAM BACK TO JSON ####
-#df = df.apply(lambda x: x.to_json(), axis=1)
-#print(df)
-
-
-
-### INITIALIZE CURSOR ##
-#connection = postgres_database_connection()
-#cursor = connection.connect()
-
-## INSERT EACH JSON ROW TO DATABASE TABLE ###
-#for i in df:  
-#
-#    i = str(i).replace("'", '')
-#    insert_sql = "INSERT INTO cfb.json_games (json_raw) VALUES ('{insert}')".format(insert=i)
-#    #sqlalchemy.text(insert_sql)
-#    cursor.execute(insert_sql)
-#    print(" ")
-#    print(insert_sql)
-
 
 

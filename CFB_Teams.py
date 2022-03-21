@@ -1,8 +1,5 @@
 from __future__ import print_function
-#from slack import WebClient
-import time
 from sqlalchemy import create_engine
-import sqlalchemy
 import cfbd
 import pandas as pd
 import json
@@ -37,8 +34,6 @@ configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 ### INITIALIZE ENGINE ###
 engine = postgres_database_connection()
-#df = pd.read_sql_query('select * from pg_aggregate', engine)
-#print(df)
 
 ### GET API RESPONSE ###
 api_instance = cfbd.TeamsApi(cfbd.ApiClient(configuration))
@@ -63,21 +58,13 @@ df['timezone'] = df[['location']].apply(lambda x: x.location['timezone'], axis=1
 df['venue_id'] = df[['location']].apply(lambda x: x.location['venue_id'], axis=1)
 df['year_constructed'] = df[['location']].apply(lambda x: x.location['year_constructed'], axis=1)
 df.head()
-##print(df)
-#
-#print(df.to_json())
 
 ## CONVERT EACH ROW OF DATAFRAM BACK TO JSON ####
 df = df.apply(lambda x: x.to_json(), axis=1)
-#print(df)
-
-
 
 ### INITIALIZE CURSOR ##
 connection = postgres_database_connection()
 cursor = connection.connect()
-
-
 
 ## INSERT EACH JSON ROW TO DATABASE TABLE ###
 for i in api_response:  
