@@ -10,6 +10,7 @@ Goals:
 - Automate data extraction
 - Create data models
 - Analyze play data for interesting patterns
+- Create visualizations
 
 Data source:
 CFBD API 
