@@ -1,4 +1,4 @@
-Personal Data Pipeline Project
+College Football Data Pipeline Project
 
 Pipeline (ELT):
 - Data extracted from CFBD API via Python scripts
@@ -6,6 +6,11 @@ Pipeline (ELT):
 - Raw JSON rows parsed and transformed in dbt, and then materialized as tables in Postgres DB
 
 
-Sources:
+Goals:
+- Automate data extraction
+- Create data models
+- Analyze play data for interesting patterns
+
+Data source:
 CFBD API 
 https://blog.collegefootballdata.com/
