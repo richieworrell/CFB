@@ -1,15 +1,11 @@
-Welcome to your new dbt project!
+Personal Data Pipeline Project
 
-### Using the starter project
+Pipeline (ELT):
+- Data extracted from CFBD API via Python scripts
+- Data dumped as raw JSON into personal Postgres db running on homelab docker image 
+- Raw JSON rows parsed and transformed in dbt, and then materialized as tables in Postgres DB
 
-Try running the following commands:
-- dbt run
-- dbt test
 
-
-### Resources:
-- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [dbt community](http://community.getbdt.com/) to learn from other analytics engineers
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
+Sources:
+CFBD API 
+https://blog.collegefootballdata.com/
