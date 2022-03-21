@@ -29,7 +29,7 @@ def postgres_database_connection():
 
 ### INITIALIZE CFBD API ###
 configuration = cfbd.Configuration()
-configuration.api_key['Authorization'] = '+tizcy9ZN70h73z9dToPlfj1YDdUP6iHI5x/dxdnqJpAddAHgCnmz8fTqpGWC2Zb'
+configuration.api_key['Authorization'] = config['DEFAULT']['cfbd_token']
 configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 

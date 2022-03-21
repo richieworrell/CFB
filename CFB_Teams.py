@@ -9,17 +9,18 @@ from pandas.io.json import json_normalize
 from cfbd.rest import ApiException
 from pprint import pprint
 import configparser
+import os
 
 config = configparser.RawConfigParser()
-config.read(os.path.join(os.path.abspath(os.path.dirname(__file__)), 'config.ini'))
-
+config.read(r'G:\My Drive\Python\config.ini')
 
 ### sqlite3 connection function ###
 def postgres_database_connection():
     """Returns the DB engine"""
     try:
         print('Connecting to DB')
-        conn =  "postgresql+psycopg2://dba_richie:changeme@73.147.167.79:5432/rw_cfb" 
+        conn =  "postgresql+psycopg2://%s:%s@%s:5432/%s" % (config['DEFAULT']['username'], config['DEFAULT']['password'], config['DEFAULT']['database_ip'],'rw_cfb')
+        #conn =  "postgresql+psycopg2://dba_richie:changeme@73.147.167.79:5432/rw_cfb" 
         engine = create_engine(conn)
         print('Connected to DB')
         return engine
@@ -28,7 +29,7 @@ def postgres_database_connection():
 
 ### INITIALIZE CFBD API ###
 configuration = cfbd.Configuration()
-configuration.api_key['Authorization'] = '+tizcy9ZN70h73z9dToPlfj1YDdUP6iHI5x/dxdnqJpAddAHgCnmz8fTqpGWC2Zb'
+configuration.api_key['Authorization'] = config['DEFAULT']['cfbd_token']
 configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 
@@ -37,7 +38,7 @@ engine = postgres_database_connection()
 
 ### GET API RESPONSE ###
 api_instance = cfbd.TeamsApi(cfbd.ApiClient(configuration))
-conference = 'ACC' # str | Conference abbreviation filter (optional)
+#conference = 'ACC' # str | Conference abbreviation filter (optional)
 api_response = api_instance.get_teams()
 
 
@@ -73,7 +74,7 @@ for i in api_response:
     i = str(i).replace("'", '')
     insert_sql = "INSERT INTO dev_raw.json_teams (json_raw) VALUES ('{insert}')".format(insert=i)
    # sqlalchemy.text(insert_sql)
-    cursor.execute(insert_sql)
+   # cursor.execute(insert_sql)
     print(" ")
     print(insert_sql)
 
