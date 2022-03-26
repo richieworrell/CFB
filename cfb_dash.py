@@ -8,7 +8,7 @@ import configparser
 config = configparser.RawConfigParser()
 config.read(os.path.join(os.path.abspath(os.path.dirname(__file__)), 'config.ini'))
 #print(config.read(r'G:\My Drive\Python\config.ini'))
-
+#test
 
 ## sqlite3 connection function ###
 def postgres_database_connection():
