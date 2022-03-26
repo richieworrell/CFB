@@ -5,11 +5,10 @@ from sqlite3.dbapi2 import Cursor
 import os
 import configparser
 
-
 config = configparser.RawConfigParser()
 config.read(os.path.join(os.path.abspath(os.path.dirname(__file__)), 'config.ini'))
+#print(config.read(r'G:\My Drive\Python\config.ini'))
 
-print(config)
 
 ## sqlite3 connection function ###
 def postgres_database_connection():
@@ -17,7 +16,6 @@ def postgres_database_connection():
     try:
         print('Connecting to DB')
         conn =  "postgresql+psycopg2://%s:%s@%s:5432/%s" % (config['DEFAULT']['username'], config['DEFAULT']['password'], config['DEFAULT']['database_ip'],'rw_cfb')
-        #conn =  "postgresql+psycopg2://dba_richie:changeme@73.147.167.79:5432/rw_cfb" 
         engine = create_engine(conn)
         print('Connected to DB')
         return engine
@@ -25,8 +23,6 @@ def postgres_database_connection():
         print (e)
 
 engine=postgres_database_connection()
-connection = postgres_database_connection()
-cursor = connection.connect()
-sql = 'SELECT * FROM rw_cfb_data.cfb_plays'
-cursor.execute(sql)
+sql = 'SELECT * FROM rw_cfb_data.cfb_teams'
+print(pd.read_sql(sql, engine))
 

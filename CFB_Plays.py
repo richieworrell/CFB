@@ -9,10 +9,11 @@ from pandas.io.json import json_normalize
 from cfbd.rest import ApiException
 from pprint import pprint
 import configparser
+import os
 
 
 config = configparser.RawConfigParser()
-config.read(r'G:\My Drive\Python\config.ini')
+config.read(os.path.join(os.path.abspath(os.path.dirname(__file__)), 'config.ini'))
 
 ### sqlite3 connection function ###
 def postgres_database_connection():
