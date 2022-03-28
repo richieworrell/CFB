@@ -13,9 +13,9 @@ SELECT
 FROM 
 
 	(SELECT 
-	
-	t.school
-	,g.id
+	 t.id 
+	,t.school
+	,g.id as game_id
 	,g.season 
 	,g.start_date
 	,g.attendance
@@ -33,9 +33,9 @@ FROM
 	UNION 
 	
 	SELECT 
-	
-	t.school
-	,g.id
+	 t.id
+	,t.school
+	,g.id as game_id
 	,g.season 
 	,g.start_date
 	,g.attendance
