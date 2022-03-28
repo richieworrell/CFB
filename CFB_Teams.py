@@ -12,7 +12,7 @@ import configparser
 import os
 
 config = configparser.RawConfigParser()
-config.read(r'G:\My Drive\Python\config.ini')
+config.read(os.path.join(os.path.abspath(os.path.dirname(__file__)), 'config.ini'))
 
 ### sqlite3 connection function ###
 def postgres_database_connection():
@@ -20,7 +20,6 @@ def postgres_database_connection():
     try:
         print('Connecting to DB')
         conn =  "postgresql+psycopg2://%s:%s@%s:5432/%s" % (config['DEFAULT']['username'], config['DEFAULT']['password'], config['DEFAULT']['database_ip'],'rw_cfb')
-        #conn =  "postgresql+psycopg2://dba_richie:changeme@73.147.167.79:5432/rw_cfb" 
         engine = create_engine(conn)
         print('Connected to DB')
         return engine
