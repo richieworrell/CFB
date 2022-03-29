@@ -15,3 +15,5 @@ Goals:
 Data source:
 CFBD API 
 https://blog.collegefootballdata.com/
+
+![image](https://user-images.githubusercontent.com/64382520/160642725-f0af9a1b-0e0e-44ee-b436-7ee1a058129a.png)
