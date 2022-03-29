@@ -41,9 +41,8 @@ engine = postgres_database_connection()
 api_instance = cfbd.PlaysApi(cfbd.ApiClient(configuration))
 year = 2021
 
-
-
-for i in range(9,15):
+### LOOP THROUGH EACH WEEK OF PLAYS, INSERT RAW JSON ROW TO DB FOR EACH INDIVIDUAL PLAY ###
+for i in range(1,15):
     week=i
     api_response = api_instance.get_plays(year=year, week=week)
     #print(api_response)
