@@ -13,7 +13,9 @@ Goals:
 - Create visualizations
 
 Data source:
-CFBD API 
-https://blog.collegefootballdata.com/
+[CFBD API](https://blog.collegefootballdata.com/)
+
+
+Dashboard Generated using [Metabase](https://www.metabase.com/) (open-source)
 
 ![image](https://user-images.githubusercontent.com/64382520/160642725-f0af9a1b-0e0e-44ee-b436-7ee1a058129a.png)
