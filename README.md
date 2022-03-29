@@ -1,15 +1,18 @@
-College Football Data Pipeline Project
+# College Football Data Pipeline Project
+
+A "full-stack" data portfolio project, from API data ingestion to end-user data visualization. 
 
 Pipeline (ELT):
 - Data extracted from CFBD API via Python scripts
 - Data dumped as raw JSON into personal Postgres db running on homelab docker image 
-- Raw JSON rows parsed and transformed in dbt, and then materialized as tables in Postgres DB
+- Raw JSON rows parsed and transformed in dbt, and then materialized as tables/views in Postgres DB
+- Run instance of [Metabase](https://www.metabase.com/) on local docker image to connect to DB and create data visualizations
 
 
 Goals:
 - Automate data extraction
 - Create data models
-- Analyze play data for interesting patterns
+- Analyze play data for interesting patterns - particularly the effectiveness of 4th Down conversion attempts
 - Create visualizations
 
 Data source:
