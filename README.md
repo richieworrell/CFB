@@ -16,7 +16,7 @@ Goals:
 - Create visualizations
 
 Data source:
-[CFBD API](https://blog.collegefootballdata.com/)
+[CFBD API]((https://github.com/CFBD/cfbd-python)
 
 
 Dashboard Generated using [Metabase](https://www.metabase.com/) (open-source)
