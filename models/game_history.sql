@@ -9,6 +9,13 @@
 SELECT 
 
 *
+,CASE 
+    WHEN x.points > x.opponent_points
+    THEN 'Win'
+    WHEN x.points = x.opponent_points
+    THEN 'Tie'
+    ELSE 'Loss'
+END AS Win_Loss
 
 FROM 
 
@@ -28,7 +35,7 @@ FROM
 	FROM rw_cfb_data.cfb_games g
 	JOIN rw_cfb_data.cfb_teams t ON t.id=g.home_id-- AND t.id=g.away_id
 	
-	WHERE t.school = 'Virginia Tech'
+	--WHERE t.school = 'Virginia Tech'
 	
 	UNION 
 	
@@ -48,10 +55,12 @@ FROM
 	FROM rw_cfb_data.cfb_games g
 	JOIN rw_cfb_data.cfb_teams t ON t.id=g.away_id-- AND t.id=g.away_id
 	
-	WHERE t.school = 'Virginia Tech'
+	--WHERE t.school = 'Virginia Tech'
 )x
 
-ORDER BY x.points DESC 
+ORDER BY 
+x.school 
+,x.start_date
 
 
 
