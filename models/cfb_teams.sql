@@ -13,6 +13,7 @@ SELECT
 	,CASE WHEN regexp_replace(CAST(CAST(json_raw AS json) ::json->'mascot' AS varchar),'(")', '', 'g') = 'null' THEN NULL ELSE regexp_replace(CAST(CAST(json_raw AS json) ::json->'mascot' AS varchar),'(")', '', 'g') END  as mascot
 	,CASE WHEN regexp_replace(CAST(CAST(json_raw AS json) ::json->'conference' AS varchar),'(")', '', 'g') = 'null' THEN NULL ELSE regexp_replace(CAST(CAST(json_raw AS json) ::json->'conference' AS varchar),'(")', '', 'g') END as conference
 	,CASE WHEN regexp_replace(CAST(CAST(json_raw AS json) ::json->'division' AS varchar),'(")', '', 'g') = 'null' THEN NULL ELSE regexp_replace(CAST(CAST(json_raw AS json) ::json->'division' AS varchar),'(")', '', 'g') END  as division
+	,CASE WHEN regexp_replace(CAST(CAST(json_raw AS json) ::json->'color' AS varchar),'(")', '', 'g') = 'null' THEN NULL ELSE regexp_replace(CAST(CAST(json_raw AS json) ::json->'color' AS varchar),'(")', '', 'g') END  as color
 	,CASE WHEN regexp_replace(CAST(CAST(json_raw AS json) ::json->'location'->> 'city' AS varchar),'(")', '', 'g') = 'null' THEN NULL ELSE regexp_replace(CAST(CAST(json_raw AS json) ::json->'location'->> 'city' AS varchar),'(")', '', 'g') end  as city
 	,CASE WHEN CAST(json_raw AS json) ::json->'location'->> 'capacity' = 'None' THEN NULL ELSE CAST(CAST(json_raw AS json) ::json->'location'->> 'capacity' AS int) END as capacity
 	,CASE WHEN CAST(json_raw AS json) ::json->'location'->> 'dome'='true' THEN TRUE ELSE FALSE END  as dome 
