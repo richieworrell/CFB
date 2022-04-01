@@ -16,12 +16,20 @@ SELECT
     THEN 'Tie'
     ELSE 'Loss'
 END AS Win_Loss
+,CASE 
+    WHEN x.conference in ('SEC', 'ACC','Big Ten', 'Big 12', 'Pac-12')
+    THEN 'P5'
+    WHEN x.conference in ('Mid-American', 'Conference USA','Mountain West', 'American Athletic', 'Sun Belt')
+    THEN 'G5'
+    ELSE 'FBS Independents or Non-Conference'
+END AS Conference_Group
 
 FROM 
 
 	(SELECT 
 	
 	t.school
+    ,t.conference
 	,g.id
 	,g.season 
 	,g.start_date
@@ -42,6 +50,7 @@ FROM
 	SELECT 
 	
 	t.school
+    ,t.conference
 	,g.id
 	,g.season 
 	,g.start_date
