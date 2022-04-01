@@ -72,8 +72,7 @@ for i in api_response:
     i = json.dumps(i, indent = 4) 
     i = str(i).replace("'", '')
     insert_sql = "INSERT INTO dev_raw.json_teams (json_raw) VALUES ('{insert}')".format(insert=i)
-   # sqlalchemy.text(insert_sql)
-   # cursor.execute(insert_sql)
+    cursor.execute(insert_sql)
     print(" ")
     print(insert_sql)
 

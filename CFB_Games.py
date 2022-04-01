@@ -39,6 +39,7 @@ engine = postgres_database_connection()
 ### GET API RESPONSE ###
 api_instance = cfbd.GamesApi(cfbd.ApiClient(configuration))
 
+### LOOP THROUGH EACH YEAR OF GAMES, INSERT RAW JSON ROW TO DB FOR EACH INDIVIDUAL GAME ###
 for i in range (1992, 2022):
     api_response = api_instance.get_games(year=i)
     #print(api_response)
