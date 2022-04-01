@@ -18,7 +18,9 @@ Goals:
 Data source:
 [CFBD API](https://github.com/CFBD/cfbd-python)
 
+Spotfire Dashboard using this data can be found [here](https://spotfire-next.cloud.tibco.com/spotfire/wp/OpenAnalysis?file=d67ef2dc-b132-46b2-933e-00b98a71306a).
 
-Dashboard Generated using [Metabase](https://www.metabase.com/) (open-source)
+
+Dashboard preview below was generated using [Metabase](https://www.metabase.com/) (open-source)
 
 ![image](https://user-images.githubusercontent.com/64382520/160642725-f0af9a1b-0e0e-44ee-b436-7ee1a058129a.png)
