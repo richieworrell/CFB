@@ -24,12 +24,14 @@ END AS Win_Loss
     ELSE 'FBS Independents or Non-Conference'
 END AS Conference_Group
 
+
 FROM 
 
 	(SELECT 
 	
 	t.school
     ,t.conference
+    ,t.color
 	,g.id
 	,g.season 
 	,g.start_date
@@ -51,6 +53,7 @@ FROM
 	
 	t.school
     ,t.conference
+    ,t.color
 	,g.id
 	,g.season 
 	,g.start_date
@@ -70,6 +73,4 @@ FROM
 ORDER BY 
 x.school 
 ,x.start_date
-
-
 
